@@ -5,17 +5,20 @@ namespace VPTec\Agendamentos\Core\Classes\Base;
 use VPTec\Agendamentos\Core\Utils\TablesName;
 use VPTec\Agendamentos\Core\Classes\Entities\Location;
 
-class LocationDAO {
+class LocationDAO
+{
     private $table_name;
 
-    function __construct(){
+    function __construct()
+    {
         global $wpdb;
         $this->table_name = $wpdb->prefix . TablesName::LOCATION_TABLE;
     }
 
-    public function Create(Location $location): int {
+    public function Create(Location $location): bool
+    {
         global $wpdb;
-        $wpdb->insert(
+        $confirmation = $wpdb->insert(
             $this->table_name,
             array(
                 'location_type' => $location->getLocationType(),
@@ -29,28 +32,33 @@ class LocationDAO {
                 'update_date' => $location->getUpdateDate()
             )
         );
-        return $wpdb->insert_id;
+        return $confirmation ? true : false;
     }
 
-    public function Read(int $location_id): Location {
+    public function Read(int $location_id): Location | null
+    {
         global $wpdb;
         $result = $wpdb->get_row("SELECT * FROM $this->table_name WHERE location_id = $location_id");
-        $location = new Location();
-        return $location->InitializeExistingLocation(
-            $result->location_id,
-            $result->location_type,
-            $result->name,
-            $result->address_line_1,
-            $result->address_line_2,
-            $result->city,
-            $result->state,
-            $result->zip_code,
-            $result->creation_date,
-            $result->update_date
-        );
+        if ($result) {
+            $location = new Location();
+            return $location->InitializeExistingLocation(
+                $result->location_id,
+                $result->location_type,
+                $result->name,
+                $result->address_line_1,
+                $result->address_line_2,
+                $result->city,
+                $result->state,
+                $result->zip_code,
+                $result->creation_date,
+                $result->update_date
+            );
+        }
+        return null;
     }
 
-    public function ReadAll(): array {
+    public function ReadAll(): array
+    {
         global $wpdb;
         $results = $wpdb->get_results("SELECT * FROM $this->table_name");
         $locations = array();
@@ -72,9 +80,10 @@ class LocationDAO {
         return $locations;
     }
 
-    public function Update(Location $location): bool {
+    public function Update(Location $location): bool
+    {
         global $wpdb;
-        $update_id = $wpdb->update(
+        $confirmation = $wpdb->update(
             $this->table_name,
             array(
                 'location_type' => $location->getLocationType(),
@@ -88,15 +97,16 @@ class LocationDAO {
             ),
             array('location_id' => $location->getID())
         );
-        return $update_id !== false;
+        return $confirmation !== false;
     }
 
-    public function Delete(int $location_id): bool {
+    public function Delete(int $location_id): bool
+    {
         global $wpdb;
-        $delete_id = $wpdb->delete(
+        $confirmation = $wpdb->delete(
             $this->table_name,
             array('location_id' => $location_id)
         );
-        return $delete_id !== false;
+        return $confirmation !== false;
     }
 }

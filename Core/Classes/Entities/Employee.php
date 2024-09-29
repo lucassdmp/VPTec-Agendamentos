@@ -14,7 +14,20 @@ class Employee {
     private string $creation_date;
     private string $update_date;
 
-    function __construct($ID, $user_id, $type, $name, $email, $phone, $creation_date, $update_date){
+    function __construct(){}
+
+    public function InitializeEmployee(int $user_id, EmployeeType $type, string $name, string $email, string $phone): Employee{
+        $this->user_id = $user_id;
+        $this->type = $type;
+        $this->name = $name;
+        $this->email = $email;
+        $this->phone = $phone;
+        $this->creation_date = current_time('mysql');
+        $this->update_date = current_time('mysql');
+        return $this;
+    }
+
+    public function InitializeExistingEmployee(int $ID, int $user_id, EmployeeType $type, string $name, string $email, string $phone, string $creation_date, string $update_date): Employee {
         $this->ID = $ID;
         $this->user_id = $user_id;
         $this->type = $type;
@@ -23,6 +36,7 @@ class Employee {
         $this->phone = $phone;
         $this->creation_date = $creation_date;
         $this->update_date = $update_date;
+        return $this;
     }
 
     public function getID(){

@@ -15,10 +15,10 @@ class ServiceDAO
         $this->table_name = $wpdb->prefix . TablesName::SERVICE_TABLE;
     }
 
-    public function Create(Service $service): int
+    public function Create(Service $service): bool
     {
         global $wpdb;
-        $wpdb->insert(
+        $confirmation = $wpdb->insert(
             $this->table_name,
             array(
                 'name' => $service->getName(),
@@ -28,22 +28,25 @@ class ServiceDAO
                 'update_date' => $service->getUpdateDate()
             )
         );
-        return $wpdb->insert_id;
+        return $confirmation ? true : false;
     }
 
-    public function Read(int $service_id): Service
+    public function Read(int $service_id): Service|null
     {
         global $wpdb;
         $result = $wpdb->get_row("SELECT * FROM $this->table_name WHERE service_id = $service_id");
-        $service = new Service();
-        return $service->InitializeExistingService(
-            $result->service_id,
-            $result->name,
-            $result->description,
-            $result->price,
-            $result->creation_date,
-            $result->update_date
-        );
+        if($result){
+            $service = new Service();
+            return $service->InitializeExistingService(
+                $result->service_id,
+                $result->name,
+                $result->description,
+                $result->price,
+                $result->creation_date,
+                $result->update_date
+            );
+        }
+        return null;
     }
 
     public function ReadAll(): array
@@ -68,7 +71,7 @@ class ServiceDAO
     public function Update(Service $service): bool
     {
         global $wpdb;
-        $update_id = $wpdb->update(
+        $confirmation = $wpdb->update(
             $this->table_name,
             array(
                 'name' => $service->getName(),
@@ -78,17 +81,17 @@ class ServiceDAO
             ),
             array('service_id' => $service->getID())
         );
-        return $update_id ? true : false;
+        return $confirmation ? true : false;
     }
 
     public function Delete(int $service_id): bool
     {
         global $wpdb;
-        $deleted = $wpdb->delete(
+        $confirmation = $wpdb->delete(
             $this->table_name,
             array('service_id' => $service_id)
         );
-        return $deleted ? true : false;
+        return $confirmation ? true : false;
     }
 
 }
