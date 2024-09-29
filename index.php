@@ -5,5 +5,9 @@
  * Plugin Version: 1.0.0
  * 
  * Description: Plugin de gerenciamentos de agendamentos
- * Author: VPTec
+ * Author: lucassdmp
+ * Author URI: github.com/lucassdmp
+ * 
  */
+
+ 
