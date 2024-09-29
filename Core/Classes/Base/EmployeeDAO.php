@@ -1,6 +1,6 @@
 <?php
 
-namespace VPTec\Agendamentos\Core\Classes;
+namespace VPTec\Agendamentos\Core\Classes\Base;
 
 use VPTec\Agendamentos\Core\Utils\EmployeeType;
 use VPTec\Agendamentos\Core\Utils\TablesName;
@@ -86,5 +86,15 @@ class EmployeeDAO {
         );
 
         return $updated ? true : false;
+    }
+
+    public function Delete($employee_id): bool{
+        global $wpdb;
+        $deleted = $wpdb->delete(
+            $this->table_name,
+            array('employee_id' => $employee_id)
+        );
+
+        return $deleted ? true : false;
     }
 }
