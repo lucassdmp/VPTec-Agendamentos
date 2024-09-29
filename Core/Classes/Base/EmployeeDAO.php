@@ -4,6 +4,7 @@ namespace VPTec\Agendamentos\Core\Classes\Base;
 
 use VPTec\Agendamentos\Core\Utils\TablesName;
 use VPTec\Agendamentos\Core\Classes\Entities\Employee;
+use VPTec\Agendamentos\Core\Utils\EmployeeType;
 
 class EmployeeDAO {
 
@@ -19,7 +20,7 @@ class EmployeeDAO {
         $confirmation = $wpdb->insert($this->table_name, 
             array(
                 'user_id' => $employee->getUserID(),
-                'type' => $employee->getType(),
+                'type' => $employee->getType()->value,
                 'name' => $employee->getName(),
                 'email' => $employee->getEmail(),
                 'phone' => $employee->getPhone(),
@@ -37,7 +38,7 @@ class EmployeeDAO {
             return $employee->InitializeExistingEmployee(
                 $result->employee_id,
                 $result->user_id,
-                $result->type,
+                EmployeeType::from($result->type),
                 $result->name,
                 $result->email,
                 $result->phone,
@@ -57,7 +58,7 @@ class EmployeeDAO {
             array_push($employees, $employee->InitializeExistingEmployee(
                 $result->employee_id,
                 $result->user_id,
-                $result->type,
+                EmployeeType::from($result->type),
                 $result->name,
                 $result->email,
                 $result->phone,
@@ -73,7 +74,7 @@ class EmployeeDAO {
         $confirmation = $wpdb->update($this->table_name, 
             array(
                 'user_id' => $employee->getUserID(),
-                'type' => $employee->getType(),
+                'type' => $employee->getType()->value,
                 'name' => $employee->getName(),
                 'email' => $employee->getEmail(),
                 'phone' => $employee->getPhone(),

@@ -4,6 +4,7 @@ namespace VPTec\Agendamentos\Core\Classes\Base;
 
 use VPTec\Agendamentos\Core\Utils\TablesName;
 use VPTec\Agendamentos\Core\Classes\Entities\Location;
+use VPTec\Agendamentos\Core\Utils\LocationType;
 
 class LocationDAO
 {
@@ -21,7 +22,7 @@ class LocationDAO
         $confirmation = $wpdb->insert(
             $this->table_name,
             array(
-                'location_type' => $location->getLocationType(),
+                'location_type' => $location->getLocationType()->value,
                 'name' => $location->getName(),
                 'address_line_1' => $location->getAddressLine1(),
                 'address_line_2' => $location->getAddressLine2(),
@@ -43,7 +44,7 @@ class LocationDAO
             $location = new Location();
             return $location->InitializeExistingLocation(
                 $result->location_id,
-                $result->location_type,
+                LocationType::from($result->location_type),
                 $result->name,
                 $result->address_line_1,
                 $result->address_line_2,
@@ -66,7 +67,7 @@ class LocationDAO
             $location = new Location();
             array_push($locations, $location->InitializeExistingLocation(
                 $result->location_id,
-                $result->location_type,
+                LocationType::from($result->location_type),
                 $result->name,
                 $result->address_line_1,
                 $result->address_line_2,
@@ -86,7 +87,7 @@ class LocationDAO
         $confirmation = $wpdb->update(
             $this->table_name,
             array(
-                'location_type' => $location->getLocationType(),
+                'location_type' => $location->getLocationType()->value,
                 'name' => $location->getName(),
                 'address_line_1' => $location->getAddressLine1(),
                 'address_line_2' => $location->getAddressLine2(),
