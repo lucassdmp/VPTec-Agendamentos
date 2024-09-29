@@ -1,6 +1,6 @@
 <?php
 
-namespace VPTec\Agendamentos\Core\Class;
+namespace VPTec\Agendamentos\Core\Classes\Entities;
 
 use VPTec\Agendamentos\Core\Utils\EmployeeType;
 

@@ -1,9 +1,10 @@
 <?php
 
-namespace VPTec\Agendamentos\Core\Class;
+namespace VPTec\Agendamentos\Core\Classes;
 
 use VPTec\Agendamentos\Core\Utils\EmployeeType;
 use VPTec\Agendamentos\Core\Utils\TablesName;
+use VPTec\Agendamentos\Core\Classes\Entities\Employee;
 
 class EmployeeDAO {
 
