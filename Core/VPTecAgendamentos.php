@@ -2,16 +2,14 @@
 
 namespace VPTec\Agendamentos\Core;
 
-use VPTec\Agendamentos\Core\Migrations;
+use VPTec\Agendamentos\Core\Migrations\Migration;
 
+require_once plugin_dir_path( __FILE__ ) . "Migrations/Migration.php";
 class VPTecAgendamentos {
 
-    public function __construct(){
-        register_activation_hook( __FILE__, array(&$this, 'activate'));
-    }
+    public function __construct(){}
 
-    public function activate(){
-        Migrations\RunTableMigrations();
+    public static function initialize(){
+        register_activation_hook( __FILE__, Migration::run());
     }
-
 }

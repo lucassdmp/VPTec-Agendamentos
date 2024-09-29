@@ -4,11 +4,12 @@ namespace VPTec\Agendamentos\Core\Migrations;
 
 use Vptec\Agendamentos\Core\Utils\TablesName;
 
+require_once plugin_dir_path(__FILE__) . "../Utils/Enum.php";
 
 function CreateAppointmentTable()
 {
     global $wpdb;
-    $table_name = $wpdb->prefix . TablesName::APPOINTMENT_TABLE;
+    $table_name = $wpdb->prefix . TablesName::APPOINTMENT_TABLE->value;
     $charset_collate = $wpdb->get_charset_collate();
 
     $does_table_exists = $wpdb->get_var("SHOW TABLES LIKE '$table_name'") === $table_name;
@@ -24,9 +25,7 @@ function CreateAppointmentTable()
         location_id int(11) NOT NULL,
         creation_date datetime NOT NULL,
         update_date datetime NOT NULL,
-        PRIMARY KEY (appointment_id),
-        FOREIGN KEY (location_id) REFERENCES {$wpdb->prefix}_vptec_locations(location_id),
-        FOREIGN KEY (service_time_slot_id) REFERENCES {$wpdb->prefix}_vptec_service_time_slots(service_time_slot_id)
+        PRIMARY KEY (appointment_id)
     ) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');

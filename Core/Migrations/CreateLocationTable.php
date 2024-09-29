@@ -4,10 +4,12 @@ namespace VPTec\Agendamentos\Core\Migrations;
 
 use Vptec\Agendamentos\Core\Utils\TablesName;
 
+require_once plugin_dir_path(__FILE__) . "../Utils/Enum.php";
+
 function CreateLocationTable()
 {
     global $wpdb;
-    $table_name = $wpdb->prefix . TablesName::LOCATION_TABLE;
+    $table_name = $wpdb->prefix . TablesName::LOCATION_TABLE->value;
     $charset_collate = $wpdb->get_charset_collate();
 
     $does_table_exists = $wpdb->get_var("SHOW TABLES LIKE '$table_name'") === $table_name;

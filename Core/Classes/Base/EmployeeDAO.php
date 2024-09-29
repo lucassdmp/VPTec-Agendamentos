@@ -11,7 +11,7 @@ class EmployeeDAO {
 
     function __construct(){
         global $wpdb;
-        $this->table_name = $wpdb->prefix . TablesName::EMPLOYEES_TABLE;
+        $this->table_name = $wpdb->prefix . TablesName::EMPLOYEE_TABLE;
     }
 
     public function Create(Employee $employee): int {

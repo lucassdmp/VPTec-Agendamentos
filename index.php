@@ -10,8 +10,12 @@
  * 
  */
 
+ 
+
 namespace VPTec\Agendamentos;
+
+require_once plugin_dir_path( __FILE__ ) . "Core/VPTecAgendamentos.php";
 
 use VPTec\Agendamentos\Core\VPTecAgendamentos;
 
-$instance = new VPTecAgendamentos();
+VPTecAgendamentos::initialize();
