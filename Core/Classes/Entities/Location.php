@@ -16,18 +16,22 @@ class Location {
     private string $creationDate;
     private string $updateDate;
 
-    public function __construct(
-        int $ID,
-        LocationType $locationType,
-        string $name,
-        string $addressline1,
-        string $addressline2,
-        string $city,
-        string $state,
-        string $zipCode,
-        string $creationDate,
-        string $updateDate
-    ) {
+    public function __construct() {}
+
+    public function InitializeLocation(string $name, string $addressline1, string $addressline2, string $city, string $state, string $zipCode, LocationType $locationType): Location {
+        $this->name = $name;
+        $this->addressline1 = $addressline1;
+        $this->addressline2 = $addressline2;
+        $this->city = $city;
+        $this->state = $state;
+        $this->zipCode = $zipCode;
+        $this->locationType = $locationType;
+        $this->creationDate = current_time('mysql');
+        $this->updateDate = current_time('mysql');
+        return $this;
+    }
+
+    public function InitializeExistingLocation(int $ID, LocationType $locationType, string $name, string $addressline1, string $addressline2, string $city, string $state, string $zipCode, string $creationDate, string $updateDate): Location {
         $this->ID = $ID;
         $this->locationType = $locationType;
         $this->name = $name;
@@ -38,6 +42,7 @@ class Location {
         $this->zipCode = $zipCode;
         $this->creationDate = $creationDate;
         $this->updateDate = $updateDate;
+        return $this;
     }
 
     public function getID(): int {
