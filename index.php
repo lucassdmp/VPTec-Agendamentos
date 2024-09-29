@@ -10,4 +10,8 @@
  * 
  */
 
- 
+namespace VPTec\Agendamentos;
+
+use VPTec\Agendamentos\Core\VPTecAgendamentos;
+
+$instance = new VPTecAgendamentos();
