@@ -6,6 +6,12 @@ use VPTec\Agendamentos\Core\Utils\TablesName;
 use VPTec\Agendamentos\Core\Classes\Entities\Employee;
 use VPTec\Agendamentos\Core\Utils\EmployeeType;
 
+require_once __DIR__ . '/../../Utils/TablesName.php';
+require_once __DIR__ . '/../Entities/Employee.php';
+require_once __DIR__ . '/../../Utils/Enum.php';
+
+
+
 class EmployeeDAO {
 
     private $table_name;
