@@ -5,8 +5,8 @@ namespace VPTec\Agendamentos\Core\Classes\Base;
 use VPTec\Agendamentos\Core\Classes\Entities\Customer;
 use VPTec\Agendamentos\Core\Utils\Enum\TablesName;
 
-require_once __DIR__ . '/../../Utils/Enum.php';
-require_once __DIR__ . '/../Entities/Customer.php';
+require_once plugin_dir_path( __FILE__ ) . '/../Utils/Enum.php';
+require_once plugin_dir_path( __FILE__ ) . '/../Entities/Customer.php';
 
 class CustomerDAO {
 

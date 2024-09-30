@@ -9,25 +9,28 @@ class Service {
     private float $price;
     private string $creationDate;
     private string $updateDate;
+    private int $wc_product_id;
 
     function __construct() {}
 
-    public function InitializeExistingService(int $ID, string $name, string $description, float $price, string $creationDate, string $updateDate): Service {
+    public function InitializeExistingService(int $ID, int $wc_product_id, string $name, string $description, float $price, string $creationDate, string $updateDate): Service {
         $this->ID = $ID;
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
         $this->creationDate = $creationDate;
         $this->updateDate = $updateDate;
+        $this->wc_product_id = $wc_product_id;
         return $this;
     }
 
-    public function InitializeService(string $name, string $description, float $price): Service {
+    public function InitializeService(string $name, int $wc_product_id, string $description, float $price): Service {
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
         $this->creationDate = date('Y-m-d H:i:s');
         $this->updateDate = date('Y-m-d H:i:s');
+        $this->wc_product_id = $wc_product_id;
         return $this;
     }
 
@@ -55,6 +58,10 @@ class Service {
         return $this->updateDate;
     }
 
+    public function getWcProductId(): int {
+        return $this->wc_product_id;
+    }
+
     public function setName(string $name): void {
         $this->name = $name;
     }
@@ -73,6 +80,10 @@ class Service {
 
     public function setUpdateDate(string $updateDate): void {
         $this->updateDate = $updateDate;
+    }
+
+    public function setWcProductId(int $wc_product_id): void {
+        $this->wc_product_id = $wc_product_id;
     }
 
 }

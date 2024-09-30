@@ -6,9 +6,8 @@ use VPTec\Agendamentos\Core\Classes\Entities\Location;
 use VPTec\Agendamentos\Core\Utils\Enum\LocationType;
 use VPTec\Agendamentos\Core\Utils\Enum\TablesName;
 
-require_once __DIR__ . '/../Entities/Employee.php';
-require_once __DIR__ . '/../../Utils/Enum.php';
-
+require_once plugin_dir_path( __FILE__ ) . '/../Entities/Location.php';
+require_once plugin_dir_path( __FILE__ ) . '/../Utils/Enum.php';
 
 class LocationDAO
 {

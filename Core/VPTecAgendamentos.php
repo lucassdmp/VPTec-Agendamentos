@@ -12,4 +12,8 @@ class VPTecAgendamentos {
     public static function initialize(){
         Migration::run();
     }
+
+    public static function initialize_admin(){
+        
+    }
 }

@@ -5,8 +5,8 @@ namespace VPTec\Agendamentos\Core\Classes\Base;
 use VPTec\Agendamentos\Core\Classes\Entities\Service;
 use VPTec\Agendamentos\Core\Utils\Enum\TablesName;
 
-require_once __DIR__ . '/../Entities/Service.php';
-require_once __DIR__ . '/../../Utils/Enum.php';
+require_once plugin_dir_path( __FILE__ ) . '/../Entities/Service.php';
+require_once plugin_dir_path( __FILE__ ) . '/../Utils/Enum.php';
 
 class ServiceDAO
 {
@@ -25,6 +25,7 @@ class ServiceDAO
             $this->table_name,
             array(
                 'name' => $service->getName(),
+                'wc_product_id' => $service->getWcProductId(),
                 'description' => $service->getDescription(),
                 'price' => $service->getPrice(),
                 'creation_date' => $service->getCreationDate(),
@@ -42,6 +43,7 @@ class ServiceDAO
             $service = new Service();
             return $service->InitializeExistingService(
                 $result->service_id,
+                $result->wc_product_id,
                 $result->name,
                 $result->description,
                 $result->price,
@@ -61,6 +63,7 @@ class ServiceDAO
             $service = new Service();
             array_push($services, $service->InitializeExistingService(
                 $result->service_id,
+                $result->wc_product_id,
                 $result->name,
                 $result->description,
                 $result->price,
@@ -78,6 +81,7 @@ class ServiceDAO
             $this->table_name,
             array(
                 'name' => $service->getName(),
+                'wc_product_id' => $service->getWcProductId(),
                 'description' => $service->getDescription(),
                 'price' => $service->getPrice(),
                 'update_date' => $service->getCreationDate()

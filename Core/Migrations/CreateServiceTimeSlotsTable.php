@@ -4,7 +4,7 @@ namespace VPTec\Agendamentos\Core\Migrations;
 
 use Vptec\Agendamentos\Core\Utils\Enum\TablesName;
 
-require_once __FILE__ . '/../../Utils/Enum.php';
+require_once plugin_dir_path( __FILE__ ) . '/../Utils/Enum.php';
 function CreateServiceTimeSlotsTable()
 {
     global $wpdb;
@@ -20,8 +20,8 @@ function CreateServiceTimeSlotsTable()
         service_time_slot_id int(11) NOT NULL AUTO_INCREMENT,
         service_id int(11) NOT NULL,
         employee_id int(11) NOT NULL,
-        start_time time NOT NULL,
-        end_time time NOT NULL,
+        start_time datetime NOT NULL,
+        end_time datetime NOT NULL,
         creation_date datetime NOT NULL,
         update_date datetime NOT NULL,
         PRIMARY KEY (service_time_slot_id)

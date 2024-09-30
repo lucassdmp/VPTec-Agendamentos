@@ -4,7 +4,7 @@ namespace VPTec\Agendamentos\Core\Migrations;
 
 use Vptec\Agendamentos\Core\Utils\Enum\TablesName;
 
-require_once __FILE__ . '/../../Utils/Enum.php';
+require_once plugin_dir_path( __FILE__ ) . '/../Utils/Enum.php';
 function CreateServiceTable()
 {
     global $wpdb;
@@ -18,6 +18,7 @@ function CreateServiceTable()
 
     $sql = "CREATE TABLE $table_name (
         service_id int(11) NOT NULL AUTO_INCREMENT,
+        wc_product_id int(11) NOT NULL,
         name varchar(255) NOT NULL,
         description text NULL,
         price decimal(10,2) NOT NULL,
