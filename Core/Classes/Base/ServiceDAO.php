@@ -2,8 +2,8 @@
 
 namespace VPTec\Agendamentos\Core\Classes\Base;
 
-use VPTec\Agendamentos\Core\Utils\Enum\TablesName;
 use VPTec\Agendamentos\Core\Classes\Entities\Service;
+use VPTec\Agendamentos\Core\Utils\Enum\TablesName;
 
 require_once __DIR__ . '/../Entities/Service.php';
 require_once __DIR__ . '/../../Utils/Enum.php';

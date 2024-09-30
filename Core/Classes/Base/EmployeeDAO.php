@@ -2,11 +2,10 @@
 
 namespace VPTec\Agendamentos\Core\Classes\Base;
 
-use VPTec\Agendamentos\Core\Utils\Enum\TablesName;
 use VPTec\Agendamentos\Core\Classes\Entities\Employee;
-use VPTec\Agendamentos\Core\Utils\EmployeeType;
+use VPTec\Agendamentos\Core\Utils\Enum\EmployeeType;
+use VPTec\Agendamentos\Core\Utils\Enum\TablesName;
 
-require_once __DIR__ . '/../../Utils/TablesName.php';
 require_once __DIR__ . '/../Entities/Employee.php';
 require_once __DIR__ . '/../../Utils/Enum.php';
 
