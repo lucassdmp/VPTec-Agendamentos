@@ -2,7 +2,7 @@
 
 namespace VPTec\Agendamentos\Core\Classes\Base;
 
-use VPTec\Agendamentos\Core\Utils\TablesName;
+use VPTec\Agendamentos\Core\Utils\Enum\TablesName;
 use VPTec\Agendamentos\Core\Classes\Entities\Service;
 
 require_once __DIR__ . '/../Entities/Service.php';
