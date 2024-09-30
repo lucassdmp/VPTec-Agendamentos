@@ -5,6 +5,9 @@ namespace VPTec\Agendamentos\Core\Classes\Base;
 use VPTec\Agendamentos\Core\Utils\TablesName;
 use VPTec\Agendamentos\Core\Classes\Entities\Service;
 
+require_once __DIR__ . '/../Entities/Service.php';
+require_once __DIR__ . '/../../Utils/Enum.php';
+
 class ServiceDAO
 {
     private string $table_name;

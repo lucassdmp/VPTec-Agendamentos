@@ -4,6 +4,8 @@ namespace VPTec\Agendamentos\Core\Classes\Entities;
 
 use Vptec\Agendamentos\Core\Utils\LocationType;
 
+require_once __FILE__ . '/../../Utils/Enum.php';
+
 class Location {
     private int $ID;
     private LocationType $locationType;

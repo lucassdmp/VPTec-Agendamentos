@@ -2,9 +2,6 @@
 
 namespace VPTec\Agendamentos\Core\Classes\Entities;
 
-use VPTec\Agendamentos\Core\Utils\EmployeeType;
-
-
 class Service {
     private int $ID;
     private string $name;

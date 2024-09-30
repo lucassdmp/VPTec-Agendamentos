@@ -10,8 +10,6 @@ require_once __DIR__ . '/../../Utils/TablesName.php';
 require_once __DIR__ . '/../Entities/Employee.php';
 require_once __DIR__ . '/../../Utils/Enum.php';
 
-
-
 class EmployeeDAO {
 
     private $table_name;

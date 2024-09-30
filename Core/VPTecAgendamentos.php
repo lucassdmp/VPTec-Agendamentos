@@ -10,6 +10,6 @@ class VPTecAgendamentos {
     public function __construct(){}
 
     public static function initialize(){
-        register_activation_hook( __FILE__, Migration::run());
+        Migration::run();
     }
 }
