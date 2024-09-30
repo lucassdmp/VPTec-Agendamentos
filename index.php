@@ -18,4 +18,6 @@ require_once plugin_dir_path( __FILE__ ) . "Core/VPTecAgendamentos.php";
 
 use VPTec\Agendamentos\Core\VPTecAgendamentos;
 
-register_activation_hook( __FILE__, array( VPTecAgendamentos::class, 'initialize' ) );
+$instance = new VPTecAgendamentos();
+
+register_activation_hook( __FILE__, array( $instance, 'initialize' ) );
