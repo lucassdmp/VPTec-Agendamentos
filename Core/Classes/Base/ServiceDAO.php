@@ -80,7 +80,7 @@ class ServiceDAO
                 'name' => $service->getName(),
                 'description' => $service->getDescription(),
                 'price' => $service->getPrice(),
-                'update_date' => current_time('mysql')
+                'update_date' => $service->getCreationDate()
             ),
             array('service_id' => $service->getID())
         );

@@ -26,8 +26,8 @@ class Service {
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
-        $this->creationDate = current_time('mysql');
-        $this->updateDate = current_time('mysql');
+        $this->creationDate = date('Y-m-d H:i:s');
+        $this->updateDate = date('Y-m-d H:i:s');
         return $this;
     }
 

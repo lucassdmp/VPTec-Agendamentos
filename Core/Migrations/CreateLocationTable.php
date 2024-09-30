@@ -2,9 +2,9 @@
 
 namespace VPTec\Agendamentos\Core\Migrations;
 
-use Vptec\Agendamentos\Core\Utils\TablesName;
+use Vptec\Agendamentos\Core\Utils\Enum\TablesName;
 
-require_once plugin_dir_path(__FILE__) . "../Utils/Enum.php";
+require_once __FILE__ . '/../../Utils/Enum.php';
 
 function CreateLocationTable()
 {

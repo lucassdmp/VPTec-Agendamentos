@@ -2,8 +2,6 @@
 
 namespace VPTec\Agendamentos\Core\Classes\Entities;
 
-use VPTec\Agendamentos\Core\Utils\Enum;
-
 class Customer {
     private int $ID;
     private int $user_id;
@@ -21,8 +19,8 @@ class Customer {
         $this->name = $name;
         $this->email = $email;
         $this->phone = $phone;
-        $this->creation_date = current_time('mysql');
-        $this->update_date = current_time('mysql');
+        $this->creation_date = date('Y-m-d H:i:s');
+        $this->update_date = date('Y-m-d H:i:s');
         return $this;
     }
 

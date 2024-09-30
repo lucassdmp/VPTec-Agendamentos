@@ -2,7 +2,9 @@
 
 namespace VPTec\Agendamentos\Core\Classes\Entities;
 
-use VPTec\Agendamentos\Core\Utils\EmployeeType;
+use VPTec\Agendamentos\Core\Utils\Enum\EmployeeType;
+
+require_once __FILE__ . '/../../Utils/Enum.php';
 
 class Employee {
     private int $ID;
@@ -22,8 +24,8 @@ class Employee {
         $this->name = $name;
         $this->email = $email;
         $this->phone = $phone;
-        $this->creation_date = current_time('mysql');
-        $this->update_date = current_time('mysql');
+        $this->creation_date = date('Y-m-d H:i:s');
+        $this->update_date = date('Y-m-d H:i:s');
         return $this;
     }
 

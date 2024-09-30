@@ -2,7 +2,7 @@
 
 namespace VPTec\Agendamentos\Core\Classes\Entities;
 
-use Vptec\Agendamentos\Core\Utils\LocationType;
+use Vptec\Agendamentos\Core\Utils\Enum\LocationType;
 
 require_once __FILE__ . '/../../Utils/Enum.php';
 
@@ -28,8 +28,8 @@ class Location {
         $this->state = $state;
         $this->zipCode = $zipCode;
         $this->locationType = $locationType;
-        $this->creationDate = current_time('mysql');
-        $this->updateDate = current_time('mysql');
+        $this->creationDate = date('Y-m-d H:i:s');
+        $this->updateDate = date('Y-m-d H:i:s');
         return $this;
     }
 
