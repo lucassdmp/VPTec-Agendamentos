@@ -1,6 +1,6 @@
 <?php
 
-namespace VPTec\Agendamentos\Core\Utils;
+namespace VPTec\Agendamentos\Core\Utils\Enum;
 
 
 enum AppointmentStatus : int{
