@@ -19,7 +19,7 @@ class LocationDAO
         $this->table_name = $wpdb->prefix . TablesName::LOCATION_TABLE;
     }
 
-    public function Create(Location $location): bool
+    public function Insert(Location $location): bool
     {
         global $wpdb;
         $confirmation = $wpdb->insert(
@@ -39,7 +39,7 @@ class LocationDAO
         return $confirmation ? true : false;
     }
 
-    public function Read(int $location_id): Location | null
+    public function GetById(int $location_id): Location | null
     {
         global $wpdb;
         $result = $wpdb->get_row("SELECT * FROM $this->table_name WHERE location_id = $location_id");
@@ -61,7 +61,7 @@ class LocationDAO
         return null;
     }
 
-    public function ReadAll(): array
+    public function GetAllLocations(): array
     {
         global $wpdb;
         $results = $wpdb->get_results("SELECT * FROM $this->table_name");

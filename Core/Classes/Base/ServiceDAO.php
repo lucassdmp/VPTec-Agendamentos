@@ -18,7 +18,7 @@ class ServiceDAO
         $this->table_name = $wpdb->prefix . TablesName::SERVICE_TABLE;
     }
 
-    public function Create(Service $service): bool
+    public function Insert(Service $service): bool
     {
         global $wpdb;
         $confirmation = $wpdb->insert(
@@ -35,7 +35,7 @@ class ServiceDAO
         return $confirmation ? true : false;
     }
 
-    public function Read(int $service_id): Service|null
+    public function GetById(int $service_id): Service|null
     {
         global $wpdb;
         $result = $wpdb->get_row("SELECT * FROM $this->table_name WHERE service_id = $service_id");
@@ -54,7 +54,7 @@ class ServiceDAO
         return null;
     }
 
-    public function ReadAll(): array
+    public function GetAllServices(): array
     {
         global $wpdb;
         $results = $wpdb->get_results("SELECT * FROM $this->table_name");

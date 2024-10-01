@@ -15,7 +15,7 @@ class AppointmentDAO{
         $this->table_name = $wpdb->prefix . TablesName::APPOINTMENT_TABLE->value;
     }
 
-    public function Create(Appointment $appointment): bool{
+    public function Insert(Appointment $appointment): bool{
         global $wpdb;
         $confirmation = $wpdb->insert(
             $this->table_name,
@@ -31,7 +31,7 @@ class AppointmentDAO{
         return $confirmation ? true : false;
     }
 
-    public function Read(int $appointment_id): Appointment|null{
+    public function GetById(int $appointment_id): Appointment|null{
         global $wpdb;
         $result = $wpdb->get_row("SELECT * FROM $this->table_name WHERE appointment_id = $appointment_id");
         if($result){
@@ -49,7 +49,7 @@ class AppointmentDAO{
         return null;
     }
 
-    public function ReadAll(): array{
+    public function GetAllAppointments(): array{
         global $wpdb;
         $results = $wpdb->get_results("SELECT * FROM $this->table_name");
         $appointments = array();

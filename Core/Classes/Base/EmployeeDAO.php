@@ -18,7 +18,7 @@ class EmployeeDAO {
         $this->table_name = $wpdb->prefix . TablesName::EMPLOYEE_TABLE;
     }
 
-    public function Create(Employee $employee): int {
+    public function Insert(Employee $employee): int {
         global $wpdb;
         $confirmation = $wpdb->insert($this->table_name, 
             array(
@@ -33,7 +33,7 @@ class EmployeeDAO {
         return $confirmation ? true : false;
     }
 
-    function Read(int $employee_id): Employee|null {
+    function GetById(int $employee_id): Employee|null {
         global $wpdb;
         $result = $wpdb->get_row("SELECT * FROM $this->table_name WHERE employee_id = $employee_id");
         if($result){
@@ -52,7 +52,7 @@ class EmployeeDAO {
         return null;
     }
 
-    function ReadAll(): array {
+    function GetAllEmployees(): array {
         global $wpdb;
         $results = $wpdb->get_results("SELECT * FROM $this->table_name");
         $employees = array();

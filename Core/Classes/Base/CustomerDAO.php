@@ -17,7 +17,7 @@ class CustomerDAO {
         $this->table_name = $wpdb->prefix . TablesName::CUSTOMER_TABLE;
     }
 
-    public function Create(Customer $customer): int {
+    public function Insert(Customer $customer): int {
         global $wpdb;
         $confirmation = $wpdb->insert($this->table_name, 
             array(
@@ -31,7 +31,7 @@ class CustomerDAO {
         return $confirmation ? true : false;
     }
 
-    function Read(int $customer_id): Customer|null {
+    function GetById(int $customer_id): Customer|null {
         global $wpdb;
         $result = $wpdb->get_row("SELECT * FROM $this->table_name WHERE customer_id = $customer_id");
         if($result){
@@ -49,7 +49,7 @@ class CustomerDAO {
         return null;
     }
 
-    function ReadAll(): array {
+    function GetAllCustomers(): array {
         global $wpdb;
         $results = $wpdb->get_results("SELECT * FROM $this->table_name");
         $customers = array();

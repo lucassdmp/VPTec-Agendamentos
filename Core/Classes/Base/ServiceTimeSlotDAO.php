@@ -16,7 +16,7 @@ class ServiceTimeSlotDAO{
         $this->tableName = $wpdb->prefix . TablesName::SERVICE_TIME_SLOTS_TABLE;
     }
 
-    public function Create(ServiceTimeSlot $serviceTimeSlot): bool{
+    public function Insert(ServiceTimeSlot $serviceTimeSlot): bool{
         global $wpdb;
         $confirmation = $wpdb->insert(
             $this->tableName,
@@ -32,7 +32,7 @@ class ServiceTimeSlotDAO{
         return $confirmation ? true : false;
     }
 
-    public function Read(int $serviceTimeSlotID): ServiceTimeSlot|null{
+    public function GetById(int $serviceTimeSlotID): ServiceTimeSlot|null{
         global $wpdb;
         $result = $wpdb->get_row("SELECT * FROM $this->tableName WHERE service_time_slot_id = $serviceTimeSlotID");
         if($result){
@@ -50,7 +50,7 @@ class ServiceTimeSlotDAO{
         return null;
     }
 
-    public function ReadAll(): array{
+    public function GetAllServiceTimeSlot(): array{
         global $wpdb;
         $results = $wpdb->get_results("SELECT * FROM $this->tableName");
         $serviceTimeSlots = array();
