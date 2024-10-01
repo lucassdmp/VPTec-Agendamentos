@@ -2,9 +2,11 @@
 
 namespace VPTec\Agendamentos\Core\Classes\Entities;
 
+use VPTec\Agendamentos\Core\Classes\Base\EmployeeDAO;
 use VPTec\Agendamentos\Core\Utils\Enum\EmployeeType;
 
-require_once __FILE__ . '/../../Utils/Enum.php';
+require_once plugin_dir_path( __FILE__ ) . "/../../Utils/Enum.php";
+require_once  plugin_dir_path( __FILE__ ) . '/../Base/EmployeeDAO.php';
 
 class Employee {
     private int $ID;
@@ -15,8 +17,11 @@ class Employee {
     private string $phone;
     private string $creation_date;
     private string $update_date;
+    public EmployeeDAO $employeeDAO;
 
-    function __construct(){}
+    function __construct(){
+        $this->employeeDAO = new EmployeeDAO();
+    }
 
     public function InitializeEmployee(int $user_id, EmployeeType $type, string $name, string $email, string $phone): Employee{
         $this->user_id = $user_id;

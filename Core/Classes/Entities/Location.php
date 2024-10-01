@@ -2,9 +2,11 @@
 
 namespace VPTec\Agendamentos\Core\Classes\Entities;
 
-use Vptec\Agendamentos\Core\Utils\Enum\LocationType;
+use VPTec\Agendamentos\Core\Utils\Enum\LocationType;
+use VPTec\Agendamentos\Core\Classes\Base\LocationDAO;
 
-require_once __FILE__ . '/../../Utils/Enum.php';
+require_once plugin_dir_path( __FILE__ ) . "/../../Utils/Enum.php";
+require_once plugin_dir_path( __FILE__ ) . "/../Base/LocationDAO.php";
 
 class Location {
     private int $ID;
@@ -18,7 +20,11 @@ class Location {
     private string $creationDate;
     private string $updateDate;
 
-    public function __construct() {}
+    public LocationDAO $locationDAO;
+
+    public function __construct() {
+        $this->locationDAO = new LocationDAO();
+    }
 
     public function InitializeLocation(string $name, string $addressline1, string $addressline2, string $city, string $state, string $zipCode, LocationType $locationType): Location {
         $this->name = $name;

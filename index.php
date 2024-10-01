@@ -20,4 +20,4 @@ use VPTec\Agendamentos\Core\VPTecAgendamentos;
 
 $instance = new VPTecAgendamentos();
 
-register_activation_hook( __FILE__, array( $instance, 'initialize' ) );
+

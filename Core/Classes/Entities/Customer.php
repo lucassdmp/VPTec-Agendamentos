@@ -1,6 +1,9 @@
 <?php
 
 namespace VPTec\Agendamentos\Core\Classes\Entities;
+use VPTec\Agendamentos\Core\Classes\Base\CustomerDAO;
+
+require_once plugin_dir_path( __FILE__ ) . '/../Base/CustomerDAO.php';
 
 class Customer {
     private int $ID;
@@ -11,7 +14,11 @@ class Customer {
     private string $creation_date;
     private string $update_date;
 
-    public function __construct(){}
+    public CustomerDAO $customerDAO;
+
+    public function __construct(){
+        $this->customerDAO = new CustomerDAO();
+    }
 
     public function InitializeNewCustomer(int $user_id, string $name, string $email, string $phone): Customer
     {
