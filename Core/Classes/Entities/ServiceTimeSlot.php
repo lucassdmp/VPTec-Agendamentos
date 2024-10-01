@@ -2,10 +2,6 @@
 
 namespace VPTec\Agendamentos\Core\Classes\Entities;
 
-use VPTec\Agendamentos\Core\Classes\Base\ServiceTimeSlotDAO;
-
-require_once plugin_dir_path( __FILE__ ) . '/../Base/ServiceTimeSlotDAO.php';
-
 class ServiceTimeSlot {
     private int $ID;
     private int $employee_id;
@@ -14,11 +10,8 @@ class ServiceTimeSlot {
     private string $end_time;
     private string $creation_date;
     private string $update_date;
-    public ServiceTimeSlotDAO $serviceTimeSlotDAO;
 
-    public function __construct() {
-        $this->serviceTimeSlotDAO = new ServiceTimeSlotDAO();
-    }
+    public function __construct() {}
 
     public function InitializeServiceTimeSlot(int $employee_id, int $service_id, string $start_time, string $end_time): ServiceTimeSlot {
         $this->employee_id = $employee_id;

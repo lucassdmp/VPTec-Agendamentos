@@ -2,9 +2,6 @@
 
 namespace VPTec\Agendamentos\Core\Classes\Entities;
 
-use VPTec\Agendamentos\Core\Classes\Base\ServiceDAO;
-
-require_once plugin_dir_path( __FILE__ ) . '/../Base/ServiceDAO.php';
 
 class Service {
     private int $ID;
@@ -14,10 +11,8 @@ class Service {
     private string $creationDate;
     private string $updateDate;
     private int $wc_product_id;
-    public ServiceDAO $serviceDAO;
-
+ 
     function __construct() {
-        $this->serviceDAO = new ServiceDAO();
     }
 
     public function InitializeExistingService(int $ID, int $wc_product_id, string $name, string $description, float $price, string $creationDate, string $updateDate): Service {
