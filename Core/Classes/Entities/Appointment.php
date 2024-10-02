@@ -18,6 +18,7 @@ class Appointment{
     public function __construct(){}
 
     public function InitializeNewAppointment(int $service_time_slot_id, int $customer_id, int $location_id): Appointment{
+        $this->ID = 0;
         $this->status = AppointmentStatus::CREATED;
         $this->service_time_slot_id = $service_time_slot_id;
         $this->customer_id = $customer_id;

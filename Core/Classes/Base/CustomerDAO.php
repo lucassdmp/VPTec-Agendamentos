@@ -14,7 +14,7 @@ class CustomerDAO {
 
     function __construct(){
         global $wpdb;
-        $this->table_name = $wpdb->prefix . TablesName::CUSTOMER_TABLE;
+        $this->table_name = $wpdb->prefix . TablesName::CUSTOMER_TABLE->value;
     }
 
     public function Insert(Customer $customer): int|false {
