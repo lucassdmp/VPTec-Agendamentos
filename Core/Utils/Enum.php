@@ -1,32 +1,32 @@
 <?php
 
-namespace VPTec\Agendamentos\Core\Utils;
+namespace VPTec\Agendamentos\Core\Utils\Enum;
 
 
-enum AppointmentStatus{
+enum AppointmentStatus : int{
     case CREATED = 1;
     case CONFIRMED = 2;
     case CANCELLED = 3;
     case FINISHED = 4;
 }
 
-enum TimeSlotStatus{
+enum TimeSlotStatus : int{
     case AVAILABLE = 1;
     case UNAVAILABLE = 2;
 }
 
-enum LocationType {
+enum LocationType : int {
     case ONLINE = 1;
     case PHYSICAL = 2;
 }
 
-enum EmployeeType {
+enum EmployeeType : int {
     case MANAGER = 1;
     case EMPLOYEE = 2;
 }
 
-enum TablesName {
-    case EMPLOYEES_TABLE = 'vptec_employees';
+enum TablesName : string {
+    case EMPLOYEE_TABLE = 'vptec_employees';
     case CUSTOMER_TABLE = 'vptec_customers';
     case LOCATION_TABLE = 'vptec_locations';
     case SERVICE_TABLE = 'vptec_services';

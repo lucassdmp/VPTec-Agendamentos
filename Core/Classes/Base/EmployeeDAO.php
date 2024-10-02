@@ -1,10 +1,13 @@
 <?php
 
-namespace VPTec\Agendamentos\Core\Classes;
+namespace VPTec\Agendamentos\Core\Classes\Base;
 
-use VPTec\Agendamentos\Core\Utils\EmployeeType;
-use VPTec\Agendamentos\Core\Utils\TablesName;
 use VPTec\Agendamentos\Core\Classes\Entities\Employee;
+use VPTec\Agendamentos\Core\Utils\Enum\EmployeeType;
+use VPTec\Agendamentos\Core\Utils\Enum\TablesName;
+
+require_once plugin_dir_path( __FILE__ ) . '/../Entities/Employee.php';
+require_once plugin_dir_path( __FILE__ ) . '/../Utils/Enum.php';
 
 class EmployeeDAO {
 
@@ -12,35 +15,33 @@ class EmployeeDAO {
 
     function __construct(){
         global $wpdb;
-        $this->table_name = $wpdb->prefix . TablesName::EMPLOYEES_TABLE;
+        $this->table_name = $wpdb->prefix . TablesName::EMPLOYEE_TABLE->value;
     }
 
-    public function Create(int $user_id, EmployeeType $type, string $name, string $email, string $phone): bool{
+    public function Insert(Employee $employee): int {
         global $wpdb;
-        $insert_id = $wpdb->insert(
-            $this->table_name,
+        $confirmation = $wpdb->insert($this->table_name, 
             array(
-                'user_id' => $user_id,
-                'employee_type' => $type,
-                'name' => $name,
-                'email' => $email,
-                'phone' => $phone,
-                'creation_date' => current_time('mysql'),
-                'update_date' => current_time('mysql')
-            )
-        );
-
-        return $insert_id ? true : false;
+                'user_id' => $employee->getUserID(),
+                'type' => $employee->getType()->value,
+                'name' => $employee->getName(),
+                'email' => $employee->getEmail(),
+                'phone' => $employee->getPhone(),
+                'creation_date' => $employee->getCreationDate(),
+                'update_date' => $employee->getUpdateDate()
+            ));
+        return $confirmation ? true : false;
     }
 
-    public function Read($employee_id): Employee|null{
+    function GetById(int $employee_id): Employee|null {
         global $wpdb;
         $result = $wpdb->get_row("SELECT * FROM $this->table_name WHERE employee_id = $employee_id");
         if($result){
-            return new Employee(
+            $employee = new Employee();
+            return $employee->InitializeExistingEmployee(
                 $result->employee_id,
                 $result->user_id,
-                $result->employee_type,
+                EmployeeType::from($result->type),
                 $result->name,
                 $result->email,
                 $result->phone,
@@ -48,18 +49,19 @@ class EmployeeDAO {
                 $result->update_date
             );
         }
-        return null;    
+        return null;
     }
 
-    public function ReadAll(): array{
+    function GetAllEmployees(): array {
         global $wpdb;
         $results = $wpdb->get_results("SELECT * FROM $this->table_name");
         $employees = array();
-        foreach ($results as $result) {
-            array_push($employees, new Employee(
+        foreach($results as $result){
+            $employee = new Employee();
+            array_push($employees, $employee->InitializeExistingEmployee(
                 $result->employee_id,
                 $result->user_id,
-                $result->employee_type,
+                EmployeeType::from($result->type),
                 $result->name,
                 $result->email,
                 $result->phone,
@@ -70,21 +72,26 @@ class EmployeeDAO {
         return $employees;
     }
 
-    public function Update($employee): bool{
+    function Update(Employee $employee): bool {
         global $wpdb;
-        $updated = $wpdb->update(
-            $this->table_name,
+        $confirmation = $wpdb->update($this->table_name, 
             array(
                 'user_id' => $employee->getUserID(),
-                'employee_type' => $employee->getType(),
+                'type' => $employee->getType()->value,
                 'name' => $employee->getName(),
                 'email' => $employee->getEmail(),
                 'phone' => $employee->getPhone(),
-                'update_date' => current_time('mysql')
+                'creation_date' => $employee->getCreationDate(),
+                'update_date' => $employee->getUpdateDate()
             ),
             array('employee_id' => $employee->getID())
         );
+        return $confirmation ? true : false;
+    }
 
-        return $updated ? true : false;
+    function Delete(int $employee_id): bool {
+        global $wpdb;
+        $confirmation = $wpdb->delete($this->table_name, array('employee_id' => $employee_id));
+        return $confirmation ? true : false;
     }
 }

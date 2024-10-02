@@ -2,27 +2,21 @@
 
 namespace VPTec\Agendamentos\Core\Classes\Entities;
 
-use VPTec\Agendamentos\Core\Utils\Enum\EmployeeType;
-
-require_once plugin_dir_path( __FILE__ ) . "/../../Utils/Enum.php";
-
-class Employee {
+class Customer {
     private int $ID;
     private int $user_id;
-    private EmployeeType $type;
     private string $name;
     private string $email;
     private string $phone;
     private string $creation_date;
     private string $update_date;
 
-    function __construct(){
-    }
+    public function __construct(){}
 
-    public function InitializeEmployee(int $user_id, EmployeeType $type, string $name, string $email, string $phone): Employee{
+    public function InitializeNewCustomer(int $user_id, string $name, string $email, string $phone): Customer
+    {
         $this->ID = 0;
         $this->user_id = $user_id;
-        $this->type = $type;
         $this->name = $name;
         $this->email = $email;
         $this->phone = $phone;
@@ -31,10 +25,10 @@ class Employee {
         return $this;
     }
 
-    public function InitializeExistingEmployee(int $ID, int $user_id, EmployeeType $type, string $name, string $email, string $phone, string $creation_date, string $update_date): Employee {
+    public function InitializeExistingCustomer(int $ID, int $user_id, string $name, string $email, string $phone, string $creation_date, string $update_date): Customer
+    {
         $this->ID = $ID;
         $this->user_id = $user_id;
-        $this->type = $type;
         $this->name = $name;
         $this->email = $email;
         $this->phone = $phone;
@@ -49,10 +43,6 @@ class Employee {
 
     public function getUserID(){
         return $this->user_id;
-    }
-
-    public function getType(){
-        return $this->type;
     }
 
     public function getName(){
@@ -75,35 +65,27 @@ class Employee {
         return $this->update_date;
     }
 
-    public function setID($ID){
-        $this->ID = $ID;
-    }
-
-    public function setUserID($user_id){
-        $this->user_id = $user_id;
-    }
-
-    public function setType($type){
-        $this->type = $type;
-    }
-
-    public function setName($name){
+    public function setName(string $name){
         $this->name = $name;
     }
 
-    public function setEmail($email){
+    public function setEmail(string $email){
         $this->email = $email;
     }
 
-    public function setPhone($phone){
+    public function setPhone(string $phone){
         $this->phone = $phone;
     }
 
-    public function setCreationDate($creation_date){
-        $this->creation_date = $creation_date;
+    public function setUpdateDate(string $update_date){
+        $this->update_date = $update_date;
     }
 
-    public function setUpdateDate($update_date){
-        $this->update_date = $update_date;
+    public function setID(int $ID){
+        $this->ID = $ID;
+    }
+
+    public function setUserID(int $user_id){
+        $this->user_id = $user_id;
     }
 }
