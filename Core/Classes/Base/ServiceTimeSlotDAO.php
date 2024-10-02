@@ -13,7 +13,7 @@ class ServiceTimeSlotDAO{
 
     public function __construct(){
         global $wpdb;
-        $this->tableName = $wpdb->prefix . TablesName::SERVICE_TIME_SLOTS_TABLE;
+        $this->tableName = $wpdb->prefix . TablesName::SERVICE_TIME_SLOTS_TABLE->value;
     }
 
     public function Insert(ServiceTimeSlot $serviceTimeSlot): bool{

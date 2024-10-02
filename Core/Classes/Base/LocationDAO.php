@@ -16,7 +16,7 @@ class LocationDAO
     function __construct()
     {
         global $wpdb;
-        $this->table_name = $wpdb->prefix . TablesName::LOCATION_TABLE;
+        $this->table_name = $wpdb->prefix . TablesName::LOCATION_TABLE->value;
     }
 
     public function Insert(Location $location): bool

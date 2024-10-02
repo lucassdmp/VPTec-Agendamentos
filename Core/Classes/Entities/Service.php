@@ -27,6 +27,7 @@ class Service {
     }
 
     public function InitializeService(string $name, int $wc_product_id, string $description, float $price): Service {
+        $this->ID = 0;
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;

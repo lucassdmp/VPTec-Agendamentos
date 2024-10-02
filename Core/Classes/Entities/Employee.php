@@ -20,6 +20,7 @@ class Employee {
     }
 
     public function InitializeEmployee(int $user_id, EmployeeType $type, string $name, string $email, string $phone): Employee{
+        $this->ID = 0;
         $this->user_id = $user_id;
         $this->type = $type;
         $this->name = $name;

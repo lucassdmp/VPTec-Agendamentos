@@ -6,7 +6,7 @@ use VPTec\Agendamentos\Core\Classes\Entities\Service;
 use VPTec\Agendamentos\Core\Utils\Enum\TablesName;
 
 require_once plugin_dir_path( __FILE__ ) . '/../Entities/Service.php';
-require_once plugin_dir_path( __FILE__ ) . '/../Utils/Enum.php';
+require_once plugin_dir_path( __FILE__ ) . '/../../Utils/Enum.php';
 
 class ServiceDAO
 {
@@ -15,7 +15,7 @@ class ServiceDAO
     function __construct()
     {
         global $wpdb;
-        $this->table_name = $wpdb->prefix . TablesName::SERVICE_TABLE;
+        $this->table_name = $wpdb->prefix . TablesName::SERVICE_TABLE->value;
     }
 
     public function Insert(Service $service): bool

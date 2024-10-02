@@ -14,6 +14,7 @@ class ServiceTimeSlot {
     public function __construct() {}
 
     public function InitializeServiceTimeSlot(int $employee_id, int $service_id, string $start_time, string $end_time): ServiceTimeSlot {
+        $this->ID = 0;
         $this->employee_id = $employee_id;
         $this->service_id = $service_id;
         $this->start_time = $start_time;

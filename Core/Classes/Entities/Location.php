@@ -22,6 +22,7 @@ class Location {
     }
 
     public function InitializeLocation(string $name, string $addressline1, string $addressline2, string $city, string $state, string $zipCode, LocationType $locationType): Location {
+        $this->ID = 0;
         $this->name = $name;
         $this->addressline1 = $addressline1;
         $this->addressline2 = $addressline2;

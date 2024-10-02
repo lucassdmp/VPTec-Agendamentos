@@ -17,7 +17,7 @@ class CustomerDAO {
         $this->table_name = $wpdb->prefix . TablesName::CUSTOMER_TABLE;
     }
 
-    public function Insert(Customer $customer): int {
+    public function Insert(Customer $customer): int|false {
         global $wpdb;
         $confirmation = $wpdb->insert($this->table_name, 
             array(
@@ -28,7 +28,7 @@ class CustomerDAO {
                 'creation_date' => $customer->getCreationDate(),
                 'update_date' => $customer->getUpdateDate()
             ));
-        return $confirmation ? true : false;
+        return $confirmation ? $confirmation : false;
     }
 
     function GetById(int $customer_id): Customer|null {
@@ -69,7 +69,7 @@ class CustomerDAO {
         return $customers;
     }
 
-    function Update(Customer $customer): int {
+    function Update(Customer $customer): int|false {
         global $wpdb;
         $confirmation = $wpdb->update($this->table_name, 
             array(
@@ -81,13 +81,13 @@ class CustomerDAO {
             ),
             array('customer_id' => $customer->getID())
         );
-        return $confirmation ? true : false;
+        return $confirmation ? $confirmation : false;
     }
 
-    function Delete(int $customer_id): int {
+    function Delete(int $customer_id): int|false {
         global $wpdb;
         $confirmation = $wpdb->delete($this->table_name, array('customer_id' => $customer_id));
-        return $confirmation ? true : false;
+        return $confirmation ? $confirmation : false;
     }
 
 }

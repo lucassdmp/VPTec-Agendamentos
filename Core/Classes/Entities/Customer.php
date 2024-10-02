@@ -15,6 +15,7 @@ class Customer {
 
     public function InitializeNewCustomer(int $user_id, string $name, string $email, string $phone): Customer
     {
+        $this->ID = 0;
         $this->user_id = $user_id;
         $this->name = $name;
         $this->email = $email;
