@@ -5,6 +5,7 @@ namespace VPTec\Agendamentos\Core;
 class EnqueueScript{
     public function __construct(){
         add_action('wp_enqueue_scripts', array($this, 'EnqueueServiceAjaxScripts'));
+        add_action('admin_enqueue_scripts', array($this, 'EnqueueServiceAjaxScripts'));
     }
 
     public function EnqueueServiceAjaxScripts(){

@@ -4,10 +4,6 @@ jQuery(document).ready(function ($) {
 
         var data = new FormData(this);
         data.append('action', 'create_service_ajax');
-        // log all form data
-        for (var pair of data.entries()) {
-            console.log(pair[0] + ', ' + pair[1]);
-        }
 
         $.ajax({
             url: ajaxurl,
@@ -17,10 +13,8 @@ jQuery(document).ready(function ($) {
             contentType: false,
             success: function (response) {
                 if (response.success) {
-                    console.log(response.data);
                     alert(response.data.message);
                 } else {
-                    console.log(response.data);
                     alert(response.data.message);
                 }
             },

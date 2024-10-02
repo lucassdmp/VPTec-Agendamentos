@@ -20,8 +20,6 @@ class VPTecAgendamentos {
         add_action('admin_menu', array($this, 'initialize_admin_menu'));
 
         $enqueue_script = new EnqueueScript();
-        $enqueue_script->EnqueueServiceAjaxScripts();
-
         $ajax = new Ajax();
 
 
